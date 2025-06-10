@@ -4,12 +4,20 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: vars.$grayD9;
   border-radius: vars.$borderSize;
+  padding: 8px 10px;
+
+  max-width: 301px;
+
+  @media (max-width: vars.$isTablet) {
+    max-width: 332px;
+  }
 
   &__imageContainer {
     position: relative;
-    aspect-ratio: 281 / 366;
     width: 100%;
     max-width: 281px;
 
