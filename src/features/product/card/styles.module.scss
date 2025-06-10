@@ -1,0 +1,74 @@
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/mixins' as mixins;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$grayD9;
+  border-radius: vars.$borderSize;
+
+  &__imageContainer {
+    position: relative;
+    aspect-ratio: 281 / 366;
+    width: 100%;
+    max-width: 281px;
+
+    @media (max-width: vars.$isTablet) {
+      max-width: 310px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: vars.$borderSize;
+    object-fit: cover;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: vars.$black;
+  }
+
+  &__description {
+    font-size: 14px;
+    color: vars.$black;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 16px;
+    font-weight: bold;
+    color: vars.$black;
+  }
+
+  &__buttonBuy {
+    @include mixins.grayContainer;
+
+    cursor: pointer;
+  }
+
+  &__qtyControlsContainer {
+    @include mixins.grayContainer;
+  }
+
+  &__qtyButton {
+    @include mixins.grayContainer;
+
+    cursor: pointer;
+  }
+
+  &__qtyInput {
+    @include mixins.grayContainer;
+
+    cursor: pointer;
+  }
+}
+
+

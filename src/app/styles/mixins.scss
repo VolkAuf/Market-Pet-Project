@@ -1,0 +1,11 @@
+@use 'src/app/styles/vars' as vars;
+
+@mixin grayContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: vars.$gray22;
+  color: vars.$textColor;
+  border: none;
+  border-radius: vars.$borderSize;
+}
