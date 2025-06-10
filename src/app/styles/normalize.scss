@@ -1,0 +1,38 @@
+@use './vars' as vars;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: vars.$font;
+}
+
+body {
+  line-height: 1.5;
+}
+
+:where(a, a:link, a:visited) {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}

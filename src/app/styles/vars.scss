@@ -1,0 +1,23 @@
+// z Indexes
+$zIndex0: 0;
+$zIndex1: 1;
+$zIndex2: 2;
+$zIndex3: 3;
+$zIndex4: 4;
+$zIndex5: 5;
+$zIndex6: 9999; //использовать только тогда, когда надо перекрыть весь app
+$zIndexOverDrawer: 1300; //перекрыть drawer mui
+
+// font
+$font: system-ui, sans-serif;
+
+// colors
+$white: #ffffff;
+$black: #000000;
+
+// sizes
+$isDesktop: 1920px;
+$isTablet: 768px;
+$isMobile: 360px;
+
+$maxContainerWidth: $isDesktop;

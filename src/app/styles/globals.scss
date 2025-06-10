@@ -1,0 +1,7 @@
+@use './vars' as vars;
+
+body {
+  background: vars.$black;
+  font-family: vars.$font;
+  color: vars.$white;
+}
