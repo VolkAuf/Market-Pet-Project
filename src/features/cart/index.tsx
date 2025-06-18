@@ -5,17 +5,26 @@ import { useState } from "react";
 import { useCartStore } from "@/shared/model/cartStore";
 import styles from "./styles.module.scss";
 import { sendOrder } from "@/shared/api/order";
+import { Popup } from "@/shared/ui/components/popup";
 
 export const Cart = () => {
   const { items, removeFromCart, clearCart, getTotal, setToCart, phone, setPhone } = useCartStore();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorPhone, setErrorPhone] = useState(false);
+  const [popupMessage, setPopupMessage] = useState<string | null>(null);
+  const [popupType, setPopupType] = useState<"success" | "error">("success");
 
   const handleOrder = async () => {
     const digits = phone.replace(/\D/g, "");
     if (digits.length !== 11) {
-      alert("Введите корректный номер телефона");
+      setErrorPhone(true);
+      setPopupMessage("Введите корректный номер телефона");
+      setPopupType("error");
       return;
     }
+
+    setErrorPhone(false);
+    setStatus("loading");
 
     const order = {
       phone: digits,
@@ -25,13 +34,13 @@ export const Cart = () => {
       })),
     };
 
-    setStatus("loading");
-
     try {
       const result = await sendOrder(order);
 
       if (result.success) {
         setStatus("success");
+        setPopupMessage("Заказ успешно оформлен!");
+        setPopupType("success");
         clearCart();
         setPhone("");
       } else {
@@ -40,6 +49,8 @@ export const Cart = () => {
     } catch (err) {
       console.error(err);
       setStatus("error");
+      setPopupMessage("Ошибка при отправке заказа. Попробуйте позже.");
+      setPopupType("error");
     }
   };
 
@@ -74,29 +85,52 @@ export const Cart = () => {
 
         <hr />
         <p>Итого: {getTotal()}₽</p>
-        <button onClick={clearCart}>Очистить корзину</button>
+        <button onClick={clearCart} disabled={items.length === 0 || status === "loading"}>
+          Очистить корзину
+        </button>
       </div>
 
       <div className={styles.cart__purchase}>
         <IMaskInput
           mask="+7 (000) 000-00-00"
           value={phone}
-          onAccept={(value) => setPhone(value)}
+          onAccept={(value) => {
+            setPhone(value);
+            if (errorPhone) setErrorPhone(false); // Убираем подсветку при вводе
+          }}
           overwrite
-          className={styles.cart__phoneNumber}
+          className={`${styles.cart__phoneNumber} ${errorPhone ? styles.errorInput : ""}`}
           type="tel"
           placeholder="+7 (___) ___-__-__"
+          aria-invalid={errorPhone}
+          aria-describedby="phone-error"
         />
+        {errorPhone && (
+          <p id="phone-error" className={styles.errorMessage}>
+            Введите корректный номер телефона
+          </p>
+        )}
+
         <button
           onClick={handleOrder}
           className={styles.orderButton}
           disabled={items.length === 0 || status === "loading"}
+          aria-busy={status === "loading"}
         >
           {status === "loading" ? "Отправка..." : "Заказать"}
         </button>
 
-        {status === "success" && <p className={styles.success}>Заказ успешно оформлен!</p>}
-        {status === "error" && <p className={styles.error}>Ошибка при отправке заказа. Попробуйте позже.</p>}
+        {/* Попап для сообщений */}
+        {popupMessage && (
+          <Popup
+            message={popupMessage}
+            type={popupType}
+            onClose={() => {
+              setPopupMessage(null);
+              setStatus("idle");
+            }}
+          />
+        )}
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ChangeEvent } from "react";
 import { useCartStore } from "@/shared/model/cartStore";
 import { Product } from "@/entities/product";
