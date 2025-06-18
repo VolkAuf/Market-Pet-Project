@@ -2,13 +2,16 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Product } from "@/entities/product";
 
-type CartItem = Product & {
+interface CartItem extends Product {
   quantity: number;
-};
+}
 
 interface CartState {
   items: CartItem[];
+  phone: string;
+  setPhone: (phone: string) => void;
   addToCart: (product: Product) => void;
+  removeFromCart: (id: number) => void;
   increment: (id: number) => void;
   decrement: (id: number) => void;
   setToCart: (id: number, count: number) => void;
@@ -20,6 +23,8 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      phone: "",
+      setPhone: (phone) => set({ phone }),
       addToCart: (product) => {
         set((state) => {
           const existing = state.items.find((item) => item.id === product.id);
@@ -32,6 +37,17 @@ export const useCartStore = create<CartState>()(
           }
           return {
             items: [...state.items, { ...product, quantity: 1 }],
+          };
+        });
+      },
+      removeFromCart: (id) => {
+        set((state) => {
+          const existing = state.items.find((item) => item.id === id);
+          if (!existing) {
+            throw new Error("attempt to remove a non-existent object");
+          }
+          return {
+            items: state.items.filter((item) => item.id !== id),
           };
         });
       },
@@ -51,7 +67,7 @@ export const useCartStore = create<CartState>()(
         set((state) => {
           const existing = state.items.find((item) => item.id === id);
           if (!existing) {
-            throw new Error("attempt to delete a non-existent object");
+            throw new Error("attempt to decrement a non-existent object");
           }
 
           if (existing.quantity > 1) {
