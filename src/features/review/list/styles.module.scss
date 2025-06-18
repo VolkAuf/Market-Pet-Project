@@ -3,8 +3,10 @@
 @use 'src/app/styles/mixins' as mixins;
 
 .reviewList {
-  display: flex;
-  margin-inline: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin-bottom: 240px;
 
   @include media.mobile-above {
     gap: 34px;
@@ -12,12 +14,14 @@
 
   @include media.mobile {
     @include mixins.flex-center;
+    width: 100%;
     gap: 22px;
+    margin-bottom: 164px;
   }
 
   &__item {
     background: vars.$grayD9;
-    border-radius: 15px;
+    border-radius: vars.$borderSize;
     padding-block: 23px;
     color: black;
     word-break: break-word;
@@ -36,7 +40,6 @@
 
     @include media.mobile {
       padding-inline: 19px;
-      max-width: 332px;
       width: 100%;
     }
   }

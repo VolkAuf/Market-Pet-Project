@@ -1,43 +1,158 @@
-.errorInput {
-  border: 1px solid red;
-  background-color: #ffe6e6;
-}
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/mixins' as mixins;
+@use 'src/app/styles/media' as media;
 
-.errorMessage {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 4px;
-}
-
-.popup {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 16px 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  color: white;
+.cart {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 9999;
-  font-weight: 600;
-  font-size: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 12px;
+  margin-bottom: 45px;
+  background-color: vars.$grayD9;
+  border-radius: vars.$borderSize;
+  color: vars.$black;
+
+  @include media.mobile {
+    width: 100%;
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 100%;
+    font-weight: vars.$regular;
+  }
+
+  &__title {
+    font-weight: vars.$regular;
+    text-align: center;
+  }
+
+  &__productList{
+    @include mixins.flex-center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  &__totalSum {
+    font-size: 28px;
+  }
+
+  &__purchase {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 100%;
+    gap: 17px;
+
+    @include media.tablet {
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+  }
+
+  &__phoneContainer {
+    @include mixins.flex-center;
+    align-items: flex-start;
+    min-width: 310px;
+    max-width: 401px;
+  }
+
+  &__phoneNumber {
+    @include mixins.grayContainer;
+    color: vars.$white;
+    box-sizing: border-box;
+    width: 100%;
+
+    @include media.tablet {
+      padding-inline: 0;
+    }
+
+    &__errorInput {
+      outline: 4px solid vars.$errorColor;
+    }
+  }
+
+  &__errorMessage {
+    color: red;
+    font-size: 18px;
+    height: 25px;
+  }
+
+  &__button {
+    @include mixins.grayContainer;
+
+    @include media.tablet {
+      width: 100%;
+    }
+  }
 }
 
-.popup button {
-  background: transparent;
-  border: none;
-  color: inherit;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0;
-}
+.productInfo {
+  @include mixins.flex-center;
+  align-items: flex-start;
+  width: 100%;
+  background-color: vars.$gray77;
+  border-radius: vars.$borderSize;
+  padding: 10px;
 
-.success {
-  background-color: #4caf50; /* зеленый */
-}
+  &__text{
+    display: grid;
+    grid-template-columns: 40% 15% 25%;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+    font-size: 24px;
+    text-align: left;
 
-.error {
-  background-color: #f44336; /* красный */
+    @include media.mobile {
+      @include mixins.flex-center;
+      align-items: flex-start;
+      gap: 1px;
+    }
+  }
+
+  &__quantity {
+    min-width: 80px;
+  }
+
+  &__price {
+    min-width: 220px;
+  }
+
+  &__title,
+  &__quantity,
+  &__price {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    min-width: 280px;
+  }
+
+  &__buttons {
+    @include mixins.flex-center(false);
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__controlPanel {
+    @include media.tablet {
+      max-width: 310px;
+    }
+  }
+
+  &__removeButton {
+    @include mixins.grayContainerSmall;
+    cursor: pointer;
+  }
 }

@@ -1,0 +1,28 @@
+@use 'src/app/styles/mixins' as mixins;
+
+.quantityInput {
+  @include mixins.flex-center;
+
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+
+  &__button {
+    cursor: pointer;
+  }
+
+  &__input {
+    cursor: text;
+    max-width: 128px;
+    text-align: center;
+  }
+
+  &__grayContainer {
+    @include mixins.grayContainer;
+  }
+
+  &__grayContainerSmall {
+    @include mixins.grayContainerSmall;
+    max-width: 72px;
+  }
+}

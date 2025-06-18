@@ -5,12 +5,12 @@ import styles from "./styles.module.scss";
 
 type PopupProps = {
   message: string;
-  onClose: () => void;
+  onCloseAction: () => void;
   type?: "success" | "error";
   animationDuration?: number;
 };
 
-export const Popup = ({ message, onClose, type = "success", animationDuration = 1000 }: PopupProps) => {
+export const Popup = ({ message, onCloseAction, type = "success", animationDuration = 1000 }: PopupProps) => {
   const [visible, setVisible] = useState(true);
   const popupClassName = [
     styles.popup,
@@ -20,18 +20,18 @@ export const Popup = ({ message, onClose, type = "success", animationDuration = 
 
   useEffect(() => {
     const hideTimeout = setTimeout(() => setVisible(false), animationDuration);
-    const closeTimeout = setTimeout(() => onClose(), animationDuration + 300);
+    const closeTimeout = setTimeout(() => onCloseAction(), animationDuration + 300);
 
     return () => {
       clearTimeout(hideTimeout);
       clearTimeout(closeTimeout);
     };
-  }, [animationDuration, onClose]);
+  }, [animationDuration, onCloseAction]);
 
   return (
     <div className={popupClassName} role="alert" aria-live="assertive">
       <p>{message}</p>
-      <button onClick={onClose} aria-label="Закрыть уведомление">
+      <button className={styles.popup__closeButton} onClick={onCloseAction} aria-label="Закрыть уведомление">
         ✖
       </button>
     </div>

@@ -2,4 +2,6 @@
 
 .homePage{
   @include mixins.flex-center;
+
+  padding: 12px;
 }

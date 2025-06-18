@@ -19,6 +19,10 @@ interface CartState {
   getTotal: () => number;
 }
 
+const clampedQuantity = (quantity: number): number => {
+  return Math.min(quantity, 9999);
+};
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
@@ -31,7 +35,7 @@ export const useCartStore = create<CartState>()(
           if (existing) {
             return {
               items: state.items.map((item) =>
-                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
+                item.id === product.id ? { ...item, quantity: clampedQuantity(item.quantity + 1) } : item,
               ),
             };
           }
@@ -59,7 +63,9 @@ export const useCartStore = create<CartState>()(
           }
 
           return {
-            items: state.items.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item)),
+            items: state.items.map((item) =>
+              item.id === id ? { ...item, quantity: clampedQuantity(item.quantity + 1) } : item,
+            ),
           };
         });
       },
@@ -89,7 +95,7 @@ export const useCartStore = create<CartState>()(
 
           if (count >= 1) {
             return {
-              items: state.items.map((item) => (item.id === id ? { ...item, quantity: count } : item)),
+              items: state.items.map((item) => (item.id === id ? { ...item, quantity: clampedQuantity(count) } : item)),
             };
           }
           return {

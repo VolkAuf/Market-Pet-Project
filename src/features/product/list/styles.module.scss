@@ -3,17 +3,20 @@
 @use 'src/app/styles/media' as media;
 
 .list {
+  @include mixins.flex-center;
+  width: 100%;
   margin-top: 47px;
   margin-inline: 14px;
 
-  @include mixins.flex-center;
 
   &__grid {
     display: grid;
     column-gap: 35px;
     row-gap: 18px;
+    justify-items: center;
 
     @include media.mobile {
+      width: 100%;
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 

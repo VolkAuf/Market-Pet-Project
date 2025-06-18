@@ -1,21 +1,33 @@
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/mixins' as mixins;
+
 .popup {
+  @include mixins.flex-center;
+
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%) translateY(0);
+  z-index: vars.$zIndexOverDrawer;
   padding: 16px 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  color: white;
-  display: flex;
-  align-items: center;
+  border-radius: vars.$borderSize;
+  box-shadow: 0 4px 12px rgba(vars.$black,0.15);
+  color: vars.$white;
   gap: 12px;
-  font-weight: 600;
+  font-weight: vars.$medium;
   font-size: 1rem;
-  z-index: 9999;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &__closeButton {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+  }
 }
 
 .popup.show {
@@ -30,19 +42,10 @@
   transform: translateX(-50%) translateY(-30px);
 }
 
-.popup button {
-  background: transparent;
-  border: none;
-  color: inherit;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0;
-}
-
 .success {
-  background-color: #4caf50; // зеленый
+  background-color: vars.$acceptColor;
 }
 
 .error {
-  background-color: #f44336; // красный
+  background-color: vars.$errorColor; // красный
 }

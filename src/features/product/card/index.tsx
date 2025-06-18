@@ -1,23 +1,13 @@
-import { ChangeEvent } from "react";
 import { useCartStore } from "@/shared/model/cartStore";
 import { Product } from "@/entities/product";
 import styles from "./styles.module.scss";
+import { ProductControlPanel } from "@/features/product/controlPanel";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const { id, title, description, price, image_url } = product;
 
+  const { addToCart } = useCartStore();
   const quantity = useCartStore((s) => s.items.find((i) => i.id === id)?.quantity || 0);
-  const addToCart = useCartStore((s) => s.addToCart);
-  const increment = useCartStore((s) => s.increment);
-  const decrement = useCartStore((s) => s.decrement);
-  const setToCart = useCartStore((s) => s.setToCart);
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value, 10);
-    if (!isNaN(val)) {
-      setToCart(id, val);
-    }
-  };
 
   return (
     <div className={styles.card}>
@@ -35,15 +25,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
               В корзину
             </button>
           ) : (
-            <div className={styles.card__countControlsContainer}>
-              <button className={styles.card__countButton} onClick={() => decrement(id)}>
-                −
-              </button>
-              <input className={styles.card__countInput} type="number" value={quantity} min={0} onChange={onChange} />
-              <button className={styles.card__countButton} onClick={() => increment(id)}>
-                +
-              </button>
-            </div>
+            <ProductControlPanel id={id} />
           )}
         </div>
       </div>

@@ -3,30 +3,23 @@
 @use 'src/app/styles/media' as media;
 
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flex-center;
+
   background-color: vars.$grayD9;
   border-radius: vars.$borderSize;
   padding: 8px 10px;
-  max-width: 301px;
+  width: 301px;
   color: vars.$black;
   text-align: center;
   font-weight: vars.$regular;
 
-  @include media.tablet {
-    max-width: 332px;
+  @include media.mobile {
+    width: 100%;
   }
 
   &__imageContainer {
     position: relative;
     width: 100%;
-    max-width: 281px;
-
-    @include media.tablet {
-      max-width: 310px;
-    }
   }
 
   &__image {
@@ -48,15 +41,16 @@
 
   &__bottom {
     @include mixins.flex-center;
+
     margin-top: auto;
     width: 100%;
   }
 
   &__buttons {
-    display: flex;
-    justify-content: center;
-    align-content: space-between;
-    margin-top: auto;
+    @include mixins.flex-center;
+
+    justify-content: space-evenly;
+    flex-direction: row;
     width: 100%;
   }
 
@@ -65,25 +59,6 @@
 
     width: 100%;
     cursor: pointer;
-  }
-
-  &__countControlsContainer {
-    @include mixins.grayContainer;
-    flex-direction: row;
-  }
-
-  &__countButton {
-    @include mixins.grayContainer;
-
-    cursor: pointer;
-  }
-
-  &__countInput {
-    @include mixins.grayContainer;
-
-    cursor: pointer;
-    max-width: 128px;
-    text-align: center;
   }
 }
 
