@@ -1,22 +1,25 @@
 @use 'vars' as vars;
 
-@mixin grayContainer {
+@mixin flex-center($column: true) {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @if $column {
+    flex-direction: column;
+  }
+}
+
+@mixin grayContainer {
+  @include flex-center;
   background-color: vars.$gray22;
   color: vars.$textColor;
   border: none;
   border-radius: vars.$borderSize;
   padding: 12px 22px;
+  font-size: 36px;
 }
 
-@mixin flex-center() {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin fluid-text($max: 48, $min: 16) {
-  font-size: clamp(#{$min}px, #{$max / vars.$desktopNumber * 100}vw, #{$max}px);
+@mixin fluid-text($max: 48, $min: 16, $divideResolution: 1280) {
+  font-size: clamp(#{$min}px, #{calc($max / $divideResolution) * 100}vw, #{$max}px);
 }

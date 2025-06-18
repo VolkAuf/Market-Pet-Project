@@ -1,12 +1,29 @@
+@use 'src/app/styles/mixins' as mixins;
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/media' as media;
+
 .list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-top: 47px;
+  margin-inline: 14px;
+
+  @include mixins.flex-center;
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px
+    column-gap: 35px;
+    row-gap: 18px;
+
+    @include media.mobile {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    @include media.mobile-above {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include media.desktop-above {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 42px;
+    }
   }
 }

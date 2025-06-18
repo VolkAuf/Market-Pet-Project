@@ -10,8 +10,10 @@
   background-color: vars.$grayD9;
   border-radius: vars.$borderSize;
   padding: 8px 10px;
-
   max-width: 301px;
+  color: vars.$black;
+  text-align: center;
+  font-weight: vars.$regular;
 
   @include media.tablet {
     max-width: 332px;
@@ -34,49 +36,54 @@
     object-fit: cover;
   }
 
-  &__title {
-    font-size: 18px;
-    font-weight: 600;
-    color: vars.$black;
-  }
-
   &__description {
-    font-size: 14px;
+    text-align: start;
+    font-size: 24px;
     color: vars.$black;
-  }
-
-  &__bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   &__price {
-    font-size: 16px;
-    font-weight: bold;
-    color: vars.$black;
+    font-size: 36px;
+  }
+
+  &__bottom {
+    @include mixins.flex-center;
+    margin-top: auto;
+    width: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    margin-top: auto;
+    width: 100%;
   }
 
   &__buttonBuy {
     @include mixins.grayContainer;
 
+    width: 100%;
     cursor: pointer;
   }
 
-  &__qtyControlsContainer {
+  &__countControlsContainer {
     @include mixins.grayContainer;
+    flex-direction: row;
   }
 
-  &__qtyButton {
+  &__countButton {
     @include mixins.grayContainer;
 
     cursor: pointer;
   }
 
-  &__qtyInput {
+  &__countInput {
     @include mixins.grayContainer;
 
     cursor: pointer;
+    max-width: 128px;
+    text-align: center;
   }
 }
 

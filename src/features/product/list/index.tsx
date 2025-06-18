@@ -3,6 +3,7 @@
 import { ProductCard } from "@/features/product/card";
 import { useProducts } from "@/shared/hooks/useProducts";
 import { useInfiniteScroll } from "@/shared/hooks/useInfiniteScroll";
+import { Loader } from "@/shared/ui/components/loader";
 import styles from "./styles.module.scss";
 
 export const ProductsList = () => {
@@ -20,8 +21,8 @@ export const ProductsList = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      {error && <div>Ошибка загрузки</div>}
-      {isLoading && <div>Загрузка...</div>}
+      <Loader text={"Загрузка..."} isActive={isLoading} />
+      <Loader text={"Ошибка загрузки"} isActive={error} />
       <div ref={loaderRef} style={{ height: 1 }} />
     </section>
   );

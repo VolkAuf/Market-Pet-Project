@@ -2,15 +2,27 @@
 @use 'mixins' as mixins;
 
 body {
-  background: vars.$black;
+  background: vars.$gray22;
   font-family: vars.$font;
   color: vars.$white;
 }
 
-h1, h2, h3, h4 {
-  font-weight: 500;
+h1, h2, h3 {
+  font-weight: vars.$medium;
 }
 
 h1, .h1 {
   @include mixins.fluid-text(96, 40);
+}
+
+h2, .h2 {
+  @include mixins.fluid-text(36, 36);
+}
+
+h3, .h3 {
+  @include mixins.fluid-text(36, 36);
+}
+
+h4, .h4 {
+  @include mixins.fluid-text(24, 24);
 }

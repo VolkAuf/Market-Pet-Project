@@ -1,33 +1,43 @@
+@use 'src/app/styles/media' as media;
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/mixins' as mixins;
+
 .reviewList {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-}
+  margin-inline: 14px;
 
-.reviewItem {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  color: black;
-
-  h1, h2, h3, p {
-    margin: 0 0 12px 0;
+  @include media.mobile-above {
+    gap: 34px;
   }
 
-  h1 {
-    font-size: 20px;
-    font-weight: 600;
+  @include media.mobile {
+    @include mixins.flex-center;
+    gap: 22px;
   }
 
-  p {
-    font-size: 16px;
-  }
-}
+  &__item {
+    background: vars.$grayD9;
+    border-radius: 15px;
+    padding-block: 23px;
+    color: black;
+    word-break: break-word;
 
-.loading,
-.error {
-  text-align: center;
-  padding: 20px;
+    * {
+      font-size: 24px;
+    }
+
+    @include media.tablet-above {
+      max-width: 468px;
+    }
+
+    @include media.mobile-above {
+      padding-inline: 27px;
+    }
+
+    @include media.mobile {
+      padding-inline: 19px;
+      max-width: 332px;
+      width: 100%;
+    }
+  }
 }
