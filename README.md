@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -18,19 +16,41 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## О приложении
 
-## Learn More
+Это простой интернет-магазин, созданный по макету из Figma. 
+Цель — провести работу с динамическими данными,
+реализовать удобный и адаптивный интерфейс для покупок, 
+а также обеспечить качественный пользовательский опыт при оформлении заказа.
 
-To learn more about Next.js, take a look at the following resources:
+## Что реализовано
+- Подгрузка товаров с API с постраничной загрузкой по мере скролла (infinite scroll)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Отображение отзывов, которые приходят в формате HTML внутри JSON, безопасно отображаются благодаря очистке через dompurify
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Корзина с удобным управлением количеством товаров
 
-## Deploy on Vercel
+- Маска ввода телефона с помощью react-imask и валидация перед отправкой заказа
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Сохранение корзины и телефона в localStorage, чтобы данные не терялись при перезагрузке страницы
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Отправка заказа на сервер с отображением информативного попапа после успешной отправки
+
+- Прелоадеры при загрузке для плавного UX
+
+- Адаптивный дизайн под мобильные и планшеты, согласно макету
+
+## Использованные технологии
+- **Next.js** — серверный рендеринг и маршрутизация
+
+- **React 19** — создание компонентов и логики UI
+
+- **zustand** — простое и лёгкое управление состоянием
+
+- **swr** — удобный и эффективный способ работы с запросами к API
+
+- **dompurify** — безопасный рендеринг HTML из отзывов
+
+- **react-imask** — маска ввода для поля телефона
+
+- **Sass** — стили и адаптивность
