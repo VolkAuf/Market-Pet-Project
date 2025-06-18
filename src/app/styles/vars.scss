@@ -12,17 +12,26 @@ $borderSize: 15px;
 
 // font
 $font: system-ui, sans-serif;
+$regular: 400;
+$medium: 500;
 
 // colors
 $white: #ffffff;
 $black: #000000;
 $gray22: #222222;
+$gray77: #777777;
 $grayD9: #D9D9D9;
 $textColor: #f0f0f0;
 
 // sizes
-$isDesktop: 1920px;
-$isTablet: 768px;
-$isMobile: 360px;
+$desktop-above: 1281px;
+$desktop: 1280px;
+$tablet-above: 1024px;
+$tablet: 1023px;
+$mobile-above: 768px;
+$mobile: 767px;
+$mobile-s-above: 481px;
+$mobile-s: 480px;
 
-$maxContainerWidth: $isDesktop;
+$maxContainerWidth: 1920px;
+$desktopNumber: 1280;

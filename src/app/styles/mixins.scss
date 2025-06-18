@@ -1,4 +1,4 @@
-@use 'src/app/styles/vars' as vars;
+@use 'vars' as vars;
 
 @mixin grayContainer {
   display: flex;
@@ -9,4 +9,14 @@
   border: none;
   border-radius: vars.$borderSize;
   padding: 12px 22px;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin fluid-text($max: 48, $min: 16) {
+  font-size: clamp(#{$min}px, #{$max / vars.$desktopNumber * 100}vw, #{$max}px);
 }

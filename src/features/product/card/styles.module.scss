@@ -1,5 +1,6 @@
 @use 'src/app/styles/vars' as vars;
 @use 'src/app/styles/mixins' as mixins;
+@use 'src/app/styles/media' as media;
 
 .card {
   display: flex;
@@ -12,7 +13,7 @@
 
   max-width: 301px;
 
-  @media (max-width: vars.$isTablet) {
+  @include media.tablet {
     max-width: 332px;
   }
 
@@ -21,7 +22,7 @@
     width: 100%;
     max-width: 281px;
 
-    @media (max-width: vars.$isTablet) {
+    @include media.tablet {
       max-width: 310px;
     }
   }

@@ -1,7 +1,16 @@
-@use './vars' as vars;
+@use 'vars' as vars;
+@use 'mixins' as mixins;
 
 body {
   background: vars.$black;
   font-family: vars.$font;
   color: vars.$white;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 500;
+}
+
+h1, .h1 {
+  @include mixins.fluid-text(96, 40);
 }

@@ -1,0 +1,23 @@
+@use 'src/app/styles/mixins' as mixins;
+@use 'src/app/styles/vars' as vars;
+@use 'src/app/styles/media' as media;
+
+.header {
+  @include mixins.flex-center;
+
+  @include media.mobile-above {
+    margin-top: 55px;
+    margin-bottom: 105px;
+  }
+
+  @include media.mobile {
+    margin-top: 13px;
+    margin-bottom: 97px;
+  }
+
+  font-weight: vars.$regular;
+  margin-inline: 14px;
+  border-radius: 15px;
+  background: vars.$gray77;
+  color: vars.$white;
+}

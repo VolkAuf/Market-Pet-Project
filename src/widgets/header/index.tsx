@@ -1,7 +1,6 @@
 import React from "react";
+import styles from "./styles.module.scss";
 
-const Index = () => {
-  return <div></div>;
+export const Header = () => {
+  return <h1 className={styles.header}>Маркет</h1>;
 };
-
-export default Index;
