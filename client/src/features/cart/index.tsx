@@ -68,7 +68,7 @@ export const Cart = () => {
           {items.map((item) => (
             <div key={item.id} className={styles.productInfo}>
               <div className={styles.productInfo__text}>
-                <p className={styles.productInfo__title}>{item.title}</p>
+                <p className={styles.productInfo__title}>{item.name}</p>
                 <p className={styles.productInfo__quantity}>x{item.quantity}</p>
                 <p className={styles.productInfo__price}>Цена: {item.price * item.quantity}₽</p>
               </div>

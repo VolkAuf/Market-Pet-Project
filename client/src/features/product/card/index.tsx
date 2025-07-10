@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { ProductControlPanel } from "@/features/product/controlPanel";
 
 export const ProductCard = ({ product }: { product: Product }) => {
-  const { id, title, description, price, image_url } = product;
+  const { id, name, description, price, image_url } = product;
 
   const { addToCart } = useCartStore();
   const quantity = useCartStore((s) => s.items.find((i) => i.id === id)?.quantity || 0);
@@ -13,9 +13,9 @@ export const ProductCard = ({ product }: { product: Product }) => {
     <div className={styles.card}>
       <div className={styles.card__imageContainer}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.card__image} src={image_url} alt={title} />
+        <img className={styles.card__image} src={image_url} alt={name} />
       </div>
-      <h3 className={styles.card__title}>{title}</h3>
+      <h3 className={styles.card__title}>{name}</h3>
       <p className={styles.card__description}>{description}</p>
       <div className={styles.card__bottom}>
         <span className={styles.card__price}>Цена: {price} ₽</span>

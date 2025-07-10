@@ -20,7 +20,7 @@ export function useProducts() {
   }, [data]);
 
   const loadMore = useCallback(() => {
-    if (data && data.items.length === PAGE_SIZE) {
+    if (data && data.items?.length === PAGE_SIZE) {
       setPage((p) => p + 1);
     }
   }, [data]);
