@@ -9,7 +9,7 @@ export async function fetchProducts(page: number, pageSize = 20): Promise<Produc
   const url = `${process.env.NEXT_PUBLIC_API_URL}/products?page=${page}&page_size=${pageSize}`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Failed to fetch products");
+    throw new Error(`Failed to fetchProducts with response: ${res}`);
   }
   return res.json();
 }
@@ -18,7 +18,7 @@ export async function getProductById(id: number): Promise<Product> {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Failed to getProductById");
+    throw new Error(`Failed to getProductById with response: ${res}`);
   }
   return res.json();
 }
@@ -34,7 +34,7 @@ export async function createOrUpdateProduct(product: Product): Promise<Product> 
   });
 
   if (!res.ok) {
-    throw new Error("Failed to CreateOrUpdateProduct product");
+    throw new Error(`Failed to CreateOrUpdateProduct with response: ${res}`);
   }
 
   return res.json();
@@ -46,6 +46,6 @@ export async function deleteProduct(id: number): Promise<void> {
     method: "DELETE",
   });
   if (!res.ok) {
-    throw new Error("Failed to deleteProduct");
+    throw new Error(`Failed to deleteProduct with response: ${res}`);
   }
 }

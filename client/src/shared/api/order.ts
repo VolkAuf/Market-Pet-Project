@@ -18,7 +18,7 @@ export async function sendOrder(data: OrderRequest): Promise<OrderResponse> {
   });
 
   if (!response.ok) {
-    throw new Error("Ошибка при отправке заказа");
+    throw new Error(`Failed to sendOrder with response: ${response}`);
   }
 
   return response.json();
