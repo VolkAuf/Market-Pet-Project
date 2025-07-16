@@ -3,7 +3,7 @@ import useSWR, { mutate } from "swr";
 import { fetchProducts } from "@/shared/api/product";
 import { Product } from "@/entities/product";
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 9;
 
 export function useProducts(appendMode = false) {
   const [page, setPage] = useState(1);

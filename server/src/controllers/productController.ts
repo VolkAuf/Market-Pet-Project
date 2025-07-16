@@ -17,7 +17,7 @@ export const getProductById = async (req: Request, res: Response) => {
 
 export const getProducts = async (req: Request, res: Response) => {
   const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 50;
+  const limit = parseInt(req.query.limit as string) || 9;
   const skip = (page - 1) * limit;
 
   const [data, total] = await productRepo().findAndCount({

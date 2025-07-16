@@ -5,8 +5,8 @@ export interface ProductsPage {
   data: Product[];
 }
 
-export async function fetchProducts(page: number, pageSize = 20): Promise<ProductsPage> {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/products?page=${page}&page_size=${pageSize}`;
+export async function fetchProducts(page: number, pageSize = 9): Promise<ProductsPage> {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/products?page=${page}&limit=${pageSize}`;
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Failed to fetchProducts with response: ${res}`);
