@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import { Header } from "@/widgets/header";
-import "./styles/globals.scss";
-import "./styles/normalize.scss";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],

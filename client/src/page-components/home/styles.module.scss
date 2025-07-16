@@ -1,7 +1,0 @@
-@use 'src/app/styles/mixins' as mixins;
-
-.homePage{
-  @include mixins.flex-center;
-
-  padding: 12px;
-}

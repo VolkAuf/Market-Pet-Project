@@ -6,7 +6,6 @@ import { useCartStore } from "@/shared/model/cartStore";
 import { sendOrder } from "@/shared/api/order";
 import { Popup } from "@/shared/ui/components/popup";
 import { ProductControlPanel } from "@/features/product/controlPanel";
-import styles from "./styles.module.scss";
 
 export const Cart = () => {
   const { items, removeFromCart, clearCart, getTotal, phone, setPhone } = useCartStore();
@@ -61,42 +60,43 @@ export const Cart = () => {
   };
 
   return (
-    <section className={styles.cart}>
-      <h2 className={styles.cart__title}>Добавленные товары</h2>
-      <div className={styles.cart__content}>
-        <div className={styles.cart__productList}>
+    <section className="flex flex-col justify-center items-start p-3 mb-11 bg-gray-d9 rounded text-black">
+      <h2 className="font-normal text-center">Добавленные товары</h2>
+      <div className="flex flex-col items-end justify-evenly w-full font-normal">
+        <div className="flex flex-col items-center w-full gap-3">
           {items.map((item) => (
-            <div key={item.id} className={styles.productInfo}>
-              <div className={styles.productInfo__text}>
-                <p className={styles.productInfo__title}>{item.name}</p>
-                <p className={styles.productInfo__quantity}>x{item.quantity}</p>
-                <p className={styles.productInfo__price}>Цена: {item.price * item.quantity}₽</p>
+            <div key={item.id} className="flex flex-col justify-center items-start w-full bg-gray-77 rounded p-3">
+              <div className="grid grid-cols-[40%_15%_25%] gap-4 text-6 w-full text-left max-md:flex max-md:flex-col max-md:items-start max-md:gap-1">
+                <p className="truncate">{item.name}</p>
+                <p className="min-w-20 truncate">x{item.quantity}</p>
+                <p className="min-w-55 truncate">Цена: {item.price * item.quantity}₽</p>
               </div>
-              <div className={styles.productInfo__buttons}>
-                <div className={styles.productInfo__controlPanel}>
+              <div className="flex justify-between items-center w-full gap-4 mt-2">
+                <div className="max-md:max-w-77">
                   <ProductControlPanel id={item.id} isSmall={true} />
                 </div>
-                <button className={styles.productInfo__removeButton} onClick={() => removeFromCart(item.id)}>
+                <button className="gray-container-sm cursor-pointer" onClick={() => removeFromCart(item.id)}>
                   Удалить
                 </button>
               </div>
             </div>
           ))}
         </div>
-        {items.length === 0 ? <p>Корзина пуста</p> : <p className={styles.cart__totalSum}>Итого: {total}₽</p>}
+        {items.length === 0 ? <p>Корзина пуста</p> : <p className="text-7">Итого: {total}₽</p>}
         <button
-          className={styles.cart__button}
+          className="gray-container max-md:w-full"
           onClick={clearCart}
           disabled={items.length === 0 || status === "loading"}
         >
           Очистить корзину
         </button>
       </div>
-      <div className={styles.cart__purchase}>
-        <div className={styles.cart__phoneContainer}>
-          <p id="phone-error" className={styles.cart__errorMessage}>
+      <div className="flex w-full justify-evenly items-end gap-4 flex-row max-md:flex-col max-md:items-center max-md:gap-2">
+        <div className="flex flex-col justify-center items-start min-w-77 max-w-100">
+          <p id="phone-error" className="text-red-500 text-4 h-6">
             {errorPhone && "Введите корректный номер телефона"}
           </p>
+
           <IMaskInput
             mask="+7 (000) 000-00-00"
             value={phone}
@@ -105,7 +105,7 @@ export const Cart = () => {
               if (errorPhone) setErrorPhone(false);
             }}
             overwrite
-            className={`${styles.cart__phoneNumber} ${errorPhone ? styles.cart__phoneNumber__errorInput : ""}`}
+            className={`gray-container text-white box-border w-full max-md:px-2 ${errorPhone && "outline-solid outline-4 outline-errorColor"}`}
             type="tel"
             placeholder="+7 (___) ___-__-__"
             aria-invalid={errorPhone}
@@ -114,7 +114,7 @@ export const Cart = () => {
         </div>
         <button
           onClick={handleOrder}
-          className={styles.cart__button}
+          className="gray-container max-md:w-full"
           disabled={items.length === 0 || status === "loading"}
           aria-busy={status === "loading"}
         >

@@ -1,6 +1,5 @@
 import { useCartStore } from "@/shared/model/cartStore";
 import { Product } from "@/entities/product";
-import styles from "./styles.module.scss";
 import { ProductControlPanel } from "@/features/product/controlPanel";
 
 export const ProductCard = ({ product }: { product: Product }) => {
@@ -10,18 +9,18 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const quantity = useCartStore((s) => s.items.find((i) => i.id === id)?.quantity || 0);
 
   return (
-    <div className={styles.card}>
-      <div className={styles.card__imageContainer}>
+    <div className="flex flex-col items-center justify-center bg-gray-300 text-black text-center font-normal rounded p-2.5 w-xs sm:w-full">
+      <div className="relative w-full">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.card__image} src={image_url} alt={name} />
+        <img className="w-full h-auto object-cover rounded" src={image_url} alt={name} />
       </div>
-      <h3 className={styles.card__title}>{name}</h3>
-      <p className={styles.card__description}>{description}</p>
-      <div className={styles.card__bottom}>
-        <span className={styles.card__price}>Цена: {price} ₽</span>
-        <div className={styles.card__buttons}>
+      <h3 className="font-medium text-4xl">{name}</h3>
+      <p className="text-left text-2xl text-black">{description}</p>
+      <div className="flex flex-col items-center justify-center mt-auto w-full">
+        <span className="text-4xl">Цена: {price} ₽</span>
+        <div className="flex items-center justify-evenly flex-row w-full">
           {quantity === 0 ? (
-            <button className={styles.card__buttonBuy} onClick={() => addToCart(product)}>
+            <button className="gray-container w-full cursor-pointer" onClick={() => addToCart(product)}>
               В корзину
             </button>
           ) : (

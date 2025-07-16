@@ -1,9 +1,0 @@
-@use 'src/app/styles/vars' as vars;
-
-.loader {
-  text-align: center;
-  background-color: vars.$black;
-  color: vars.$white;
-  padding: 15px;
-  border-radius: vars.$borderSize;
-}

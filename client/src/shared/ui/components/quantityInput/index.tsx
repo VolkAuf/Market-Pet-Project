@@ -1,5 +1,3 @@
-import styles from "./styles.module.scss";
-
 type QuantityInputProps = {
   value: number;
   min?: number;
@@ -10,29 +8,21 @@ type QuantityInputProps = {
 };
 
 export const QuantityInput = ({ value, min = 0, onChange, onIncrement, onDecrement, isSmall }: QuantityInputProps) => {
-  const grayContainerName = isSmall ? styles.quantityInput__grayContainerSmall : styles.quantityInput__grayContainer;
+  const grayClass = isSmall ? "gray-container-sm max-w-18" : "gray-container";
 
   return (
-    <div className={styles.quantityInput}>
-      <button
-        className={`${styles.quantityInput__button} ${grayContainerName}`}
-        onClick={onDecrement}
-        aria-label="Уменьшить"
-      >
+    <div className="flex flex-row items-center justify-evenly w-full">
+      <button className={`${grayClass} cursor-pointer`} onClick={onDecrement} aria-label="Уменьшить">
         −
       </button>
       <input
-        className={`${styles.quantityInput__input} ${grayContainerName}`}
+        className={`${grayClass} text-center max-w-32 cursor-text`}
         type="number"
         value={value}
         min={min}
         onChange={(e) => onChange(parseInt(e.target.value, 10))}
       />
-      <button
-        className={`${styles.quantityInput__button} ${grayContainerName}`}
-        onClick={onIncrement}
-        aria-label="Увеличить"
-      >
+      <button className={`${grayClass} cursor-pointer`} onClick={onIncrement} aria-label="Увеличить">
         +
       </button>
     </div>
