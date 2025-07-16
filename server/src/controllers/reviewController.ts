@@ -6,5 +6,5 @@ const reviewRepo = () => AppDataSource.getRepository(Review);
 
 export const getReviews = async (_req: Request, res: Response) => {
   const reviews = await reviewRepo().find();
-  res.status(201).json(reviews);
+  res.status(200).json(reviews);
 };

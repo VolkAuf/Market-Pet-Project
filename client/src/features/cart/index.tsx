@@ -34,7 +34,7 @@ export const Cart = () => {
     const order = {
       phone: digits,
       cart: items.map((item) => ({
-        id: item.id,
+        id: item.id!,
         quantity: item.quantity,
       })),
     };
@@ -73,9 +73,9 @@ export const Cart = () => {
               </div>
               <div className="flex justify-between items-center w-full gap-4 mt-2">
                 <div className="max-md:max-w-77">
-                  <ProductControlPanel id={item.id} isSmall={true} />
+                  <ProductControlPanel id={item.id!} isSmall={true} />
                 </div>
-                <button className="gray-container-sm cursor-pointer" onClick={() => removeFromCart(item.id)}>
+                <button className="gray-container-sm cursor-pointer" onClick={() => removeFromCart(item.id!)}>
                   Удалить
                 </button>
               </div>
@@ -93,10 +93,9 @@ export const Cart = () => {
       </div>
       <div className="flex w-full justify-evenly items-end gap-4 flex-row max-md:flex-col max-md:items-center max-md:gap-2">
         <div className="flex flex-col justify-center items-start min-w-77 max-w-100">
-          <p id="phone-error" className="text-red-500 text-4 h-6">
+          <p id="phone-error" className="text-errorColor text-4 h-6">
             {errorPhone && "Введите корректный номер телефона"}
           </p>
-
           <IMaskInput
             mask="+7 (000) 000-00-00"
             value={phone}

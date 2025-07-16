@@ -8,13 +8,14 @@ import { swaggerSpec } from "@/swagger";
 import { AppDataSource } from "@/data-source";
 import imageRouter from "@/routes/imageRouter";
 import reviewRouter from "@/routes/reviewRouter";
+import orderRouter from "@/routes/orderRouter";
 
 dotenv.config();
 const app = express();
-const CLIENT_URL = process.env.CLIENT_URL;
-const allowedOrigins = [CLIENT_URL];
 const PORT = process.env.PORT || 3001;
-const HOST_URL = process.env.HOST_URL || "http://localhost";
+const CLIENT_URL = process.env.CLIENT_URL;
+const HOST_URL = process.env.HOST_URL;
+const allowedOrigins = [CLIENT_URL, HOST_URL];
 const DOCS_ROUTE = "/api-docs";
 
 app.use(
@@ -35,6 +36,7 @@ app.use(DOCS_ROUTE, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/products", productRouter);
 app.use("/images", imageRouter);
 app.use("/reviews", reviewRouter);
+app.use("/order", orderRouter);
 
 AppDataSource.initialize()
   .then(() => {
@@ -52,8 +54,8 @@ AppDataSource.initialize()
      *           type: string
      */
     app.listen(PORT, () => {
-      console.log(`Server running at ${HOST_URL}:${PORT}`);
-      console.log(`Docs available at ${HOST_URL}:${PORT}${DOCS_ROUTE}`);
+      console.log(`Server running at ${HOST_URL}`);
+      console.log(`Docs available at ${HOST_URL}${DOCS_ROUTE}`);
     });
   })
   .catch((err) => console.error("DB init error", err));

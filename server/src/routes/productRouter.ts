@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getProducts, createProduct, updateProduct, deleteProduct } from "@/controllers/productController";
+import {
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProductById,
+} from "@/controllers/productController";
 
 const router = Router();
 
@@ -24,6 +30,25 @@ const router = Router();
  *         description: Успешный ответ
  */
 router.get("/", getProducts);
+
+/**
+ * @openapi
+ * /products/{id}:
+ *   get:
+ *     summary: Получить товар по id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Успешный ответ
+ *       404:
+ *         description: Не найден
+ */
+router.get("/:id", getProductById);
 
 /**
  * @openapi

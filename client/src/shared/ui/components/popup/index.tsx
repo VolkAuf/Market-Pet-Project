@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type PopupProps = {
   message: string;
@@ -28,7 +29,7 @@ export const Popup = ({ message, onCloseAction, type = "success", animationDurat
     };
   }, [animationDuration, onCloseAction]);
 
-  return (
+  return createPortal(
     <div className={popupClassName} role="alert" aria-live="assertive">
       <p>{message}</p>
       <button
@@ -38,6 +39,7 @@ export const Popup = ({ message, onCloseAction, type = "success", animationDurat
       >
         ✖
       </button>
-    </div>
+    </div>,
+    document.body,
   );
 };
