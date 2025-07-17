@@ -40,19 +40,15 @@ export const Cart = () => {
     };
 
     try {
-      const result = await sendOrder(order);
-
-      if (result.success) {
-        setStatus("success");
-        setPopupMessage("Заказ успешно оформлен!");
-        setPopupType("success");
-        clearCart();
-        setPhone("");
-      } else {
-        throw new Error(result.error || "Неизвестная ошибка");
-      }
+      await sendOrder(order);
+      setStatus("success");
+      setPopupMessage("Заказ успешно оформлен!");
+      setPopupType("success");
+      clearCart();
+      setPhone("");
     } catch (err) {
-      console.error(err);
+      const message = err instanceof Error ? err.message : "Неизвестная ошибка";
+      console.error(message);
       setStatus("error");
       setPopupMessage("Ошибка при отправке заказа. Попробуйте позже.");
       setPopupType("error");

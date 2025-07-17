@@ -91,11 +91,12 @@ export const ProductForm = ({ productProp = null }: ProductFormProps) => {
     if (!form.name) return;
     setLoadingImage(true);
     try {
-      const data = await fetchRandomImg(form.name);
-      setForm((prev) => ({ ...prev, imageUrl: data.imageUrl }));
+      const imageUrl = await fetchRandomImg(form.name);
+      setForm((prev) => ({ ...prev, imageUrl }));
     } catch (err) {
-      console.error("Ошибка при получении изображения:", err);
-      alert("Не удалось получить изображение");
+      const message = err instanceof Error ? err.message : "Неизвестная ошибка";
+      console.error("Ошибка при получении изображения:", message);
+      alert(`Не удалось получить изображение: ${message}`);
     } finally {
       setLoadingImage(false);
     }
@@ -126,8 +127,9 @@ export const ProductForm = ({ productProp = null }: ProductFormProps) => {
       await createOrUpdateProduct(product);
       router.push("/");
     } catch (err) {
-      console.error(`Ошибка ${action} продукта`, err);
-      alert(`Ошибка при ${action} продукта`);
+      const message = err instanceof Error ? err.message : "Неизвестная ошибка";
+      console.error(`Ошибка ${action} продукта`, message);
+      alert(`Ошибка при ${action} продукта: ${message}`);
     } finally {
       setSubmitting(false);
     }

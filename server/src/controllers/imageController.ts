@@ -19,11 +19,11 @@ export const getRandomImage = async (req: Request, res: Response) => {
         const imgResponse = result.response;
         const photo = Array.isArray(imgResponse) ? imgResponse[0] : imgResponse;
         const url = photo.urls.small;
-        res.json({ imageUrl: url });
+        res.json({ isSuccess: true, data: url });
       }
     })
     .catch((err) => {
       console.error("Image fetch error:", err);
-      return res.status(500).json({ error: "Internal Server Error" });
+      return res.status(500).json({ isSuccess: false, error: "Internal Server Error" });
     });
 };

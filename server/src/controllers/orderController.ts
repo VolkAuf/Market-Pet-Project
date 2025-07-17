@@ -10,7 +10,7 @@ export const createOrder = async (req: Request, res: Response) => {
     const { phone, cart } = req.body;
 
     if (!phone || !Array.isArray(cart)) {
-      return res.status(400).json({ success: 0, error: "Неверные данные" });
+      return res.status(400).json({ isSuccess: false, error: "Invalid input data" });
     }
 
     const order = new Order();
@@ -24,9 +24,9 @@ export const createOrder = async (req: Request, res: Response) => {
 
     await orderRepo().save(order);
 
-    res.status(200).json({ success: 1 });
+    res.status(200).json({ isSuccess: true });
   } catch (error) {
     console.error("Ошибка при создании заказа:", error);
-    res.status(500).json({ success: 0, error: "Ошибка сервера" });
+    res.status(500).json({ isSuccess: false, error: "Internal Server Error" });
   }
 };

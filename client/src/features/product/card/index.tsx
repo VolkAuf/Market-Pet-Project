@@ -12,7 +12,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product, onProductChange }: ProductCardProps) => {
   const router = useRouter();
-  const { id, name, description, price, imageUrl } = product;
+  const { id, name, description, price, imageUrl, article } = product;
 
   const { addToCart } = useCartStore();
   const quantity = useCartStore((s) => s.items.find((i) => i.id === id)?.quantity || 0);
@@ -25,8 +25,9 @@ export const ProductCard = ({ product, onProductChange }: ProductCardProps) => {
       alert("Продукт удалён");
       onProductChange();
     } catch (error) {
-      console.error(error);
-      alert("Ошибка удаления");
+      const message = error instanceof Error ? error.message : "Неизвестная ошибка";
+      console.error("Ошибка удаления:", message);
+      alert(`Ошибка удаления: ${message}`);
     }
   };
 
@@ -52,6 +53,7 @@ export const ProductCard = ({ product, onProductChange }: ProductCardProps) => {
           </button>
         </div>
       </div>
+      <h3 className="font-medium text-4xl">Артикул: {article}</h3>
       <h3 className="font-medium text-4xl">{name}</h3>
       <p className="text-left text-2xl text-black">{description}</p>
       <div className="flex flex-col items-center justify-center mt-auto w-full">
