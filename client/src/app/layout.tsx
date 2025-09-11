@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ReactNode } from "react";
 import { Header } from "@/widgets/header";
-import "./globals.css";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import "@/app/globals.css";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -15,10 +15,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ru">
+    <html lang="ru" className="bg-gray-900">
       <body className={inter.className}>
-        <Header />
-        <main>{children}</main>
+        <div id="root">
+          <Header />
+          <main>{children}</main>
+        </div>
+        <div className="modal-root" inert></div>
       </body>
     </html>
   );

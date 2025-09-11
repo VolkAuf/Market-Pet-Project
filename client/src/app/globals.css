@@ -28,3 +28,7 @@
         @apply flex flex-col items-center justify-center bg-gray-22 text-textColor rounded px-2 py-1 text-2xl;
     }
 }
+
+html {
+    scrollbar-gutter: stable;
+}

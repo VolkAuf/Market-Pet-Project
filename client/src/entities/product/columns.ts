@@ -1,0 +1,61 @@
+import { type Product, productSize } from "@/entities/product/types";
+import type { Column } from "@/features/table/types";
+
+export const productColumns: Column<Product>[] = [
+  {
+    key: "id",
+    header: "ID",
+    type: "number",
+    sortable: true,
+    filterable: false,
+    filterType: "number",
+    editable: false,
+  },
+  {
+    key: "name",
+    header: "Name",
+    type: "text",
+    sortable: true,
+    filterable: true,
+    filterType: "text",
+    editable: (r) => (r ? r.active : false),
+  },
+  {
+    key: "options.size",
+    header: "Size",
+    type: "select",
+    sortable: true,
+    filterable: true,
+    filterType: "select",
+    options: [...productSize],
+    comparer: (a, b) => productSize.indexOf(a.options.size) - productSize.indexOf(b.options.size),
+    editable: true,
+  },
+  {
+    key: "options.amount",
+    header: "Amount",
+    type: "number",
+    sortable: true,
+    filterable: true,
+    filterType: "number",
+    editable: true,
+  },
+  {
+    key: "active",
+    header: "Active",
+    type: "boolean",
+    sortable: true,
+    filterable: true,
+    filterType: "boolean",
+    editable: true,
+  },
+  {
+    key: "createdAt",
+    header: "Created",
+    type: "date",
+    sortable: true,
+    filterable: true,
+    filterType: "date",
+    editable: true,
+  },
+];
