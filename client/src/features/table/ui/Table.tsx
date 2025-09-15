@@ -1,11 +1,11 @@
 "use client";
 
-import { type JSX, memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { filterRow } from "@/features/table/lib/filter/handlers";
 import { sortData, type SortState } from "@/features/table/lib/sorter/handlers";
 import { FilterInputMemo } from "@/features/table/ui/filter/FilterInput";
-import { HeaderCell, type HeaderCellProps } from "@/features/table/ui/header-cell/HeaderCell";
-import { Row, type RowProps } from "@/features/table/ui/row/Row";
+import { HeaderCellMemo } from "@/features/table/ui/header-cell/HeaderCell";
+import { RowMemo } from "@/features/table/ui/row/Row";
 import type { Column, FilterParams, FilterValue, WithId } from "@/features/table/types";
 
 export type TableProps<T extends WithId> = {
@@ -13,9 +13,6 @@ export type TableProps<T extends WithId> = {
   columns: Column<T>[];
   onEdit: (row: T) => void;
 };
-
-const HeaderCellMemo = memo(HeaderCell) as <T extends WithId>(p: HeaderCellProps<T>) => JSX.Element;
-const RowMemo = memo(Row) as <T extends WithId>(p: RowProps<T>) => JSX.Element;
 
 export function Table<T extends WithId>({ data, columns, onEdit }: TableProps<T>) {
   const [sort, setSort] = useState<SortState>({ dir: "asc" });
@@ -98,4 +95,4 @@ export function Table<T extends WithId>({ data, columns, onEdit }: TableProps<T>
   );
 }
 
-export const MemoTable = memo(Table) as <T extends WithId>(p: TableProps<T>) => JSX.Element;
+export const MemoTable = memo(Table) as typeof Table;

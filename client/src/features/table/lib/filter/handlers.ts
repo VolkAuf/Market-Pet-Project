@@ -7,8 +7,8 @@ const filterHandlers: Record<ColumnType, FilterHandler> = {
       .toLowerCase()
       .includes(String(f).toLowerCase()),
   boolean: (val, f) => {
-    if (f === true || f === "true") return Boolean(val);
-    if (f === false || f === "false") return !Boolean(val);
+    if (f === true || f === "True") return Boolean(val);
+    if (f === false || f === "False") return !Boolean(val);
     return true;
   },
   date: (val, f) => {

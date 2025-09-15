@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { getNestedValue } from "@/shared/utils/nestedValueHandlers";
 import type { Column, WithId } from "@/features/table/types";
 
@@ -33,3 +33,5 @@ export function Row<T extends WithId>({ row, columns, onEdit }: RowProps<T>) {
     </tr>
   );
 }
+
+export const RowMemo = memo(Row) as typeof Row;

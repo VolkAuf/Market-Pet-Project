@@ -1,5 +1,5 @@
 import { type Product, productSize } from "@/entities/product/types";
-import type { Column } from "@/features/table/types";
+import { BooleanFilterValues, type Column } from "@/features/table/types";
 
 export const productColumns: Column<Product>[] = [
   {
@@ -47,6 +47,7 @@ export const productColumns: Column<Product>[] = [
     sortable: true,
     filterable: true,
     filterType: "boolean",
+    options: [...BooleanFilterValues],
     editable: true,
   },
   {

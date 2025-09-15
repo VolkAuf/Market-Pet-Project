@@ -1,10 +1,9 @@
 import { memo, useCallback } from "react";
-import { BooleanFilter } from "@/features/table/ui/filter/inputs/BooleanFilter";
+import { type Column, type FilterValue } from "@/features/table/types";
 import { DateFilter } from "@/features/table/ui/filter/inputs/DateFilter";
 import { RangeFilter } from "@/features/table/ui/filter/inputs/RangeFilter";
 import { SelectFilter } from "@/features/table/ui/filter/inputs/SelectFilter";
 import { TextFilter } from "@/features/table/ui/filter/inputs/TextFilter";
-import type { Column, FilterValue } from "@/features/table/types";
 
 type FilterInputProps<T> = {
   col: Column<T>;
@@ -23,15 +22,13 @@ export function FilterInput<T>({ col, value, setFilter }: FilterInputProps<T>) {
     case "text":
       const stringValue = value?.toString() ?? "";
       return <TextFilter value={stringValue} onChange={changeHandler} />;
-    case "boolean":
-      const booleanValue = typeof value === "boolean" ? value : "any";
-      return <BooleanFilter value={booleanValue} onChange={changeHandler} />;
     case "date":
       if (typeof value !== "object") {
         console.error(errorTypes);
         return null;
       }
       return <DateFilter value={value} onChange={changeHandler} />;
+    case "boolean":
     case "select":
       if (col.options === undefined || col.options.length === 0) return null;
       if (typeof value !== "string" && value !== null) {

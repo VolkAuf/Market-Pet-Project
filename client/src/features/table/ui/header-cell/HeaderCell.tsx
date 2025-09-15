@@ -1,4 +1,4 @@
-import { type AriaAttributes, useCallback } from "react";
+import { type AriaAttributes, memo, useCallback } from "react";
 import type { SortState } from "@/features/table/lib/sorter/handlers";
 import type { Column, WithId } from "@/features/table/types";
 
@@ -32,3 +32,5 @@ export function HeaderCell<T extends WithId>({ col, sort, onToggleSort }: Header
     </th>
   );
 }
+
+export const HeaderCellMemo = memo(HeaderCell) as typeof HeaderCell;

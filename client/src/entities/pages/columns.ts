@@ -1,5 +1,5 @@
+import { BooleanFilterValues, type Column } from "@/features/table/types";
 import type { Pages } from "@/entities/pages/types";
-import type { Column } from "@/features/table/types";
 
 export const pagesColumns: Column<Pages>[] = [
   {
@@ -27,6 +27,7 @@ export const pagesColumns: Column<Pages>[] = [
     sortable: true,
     filterable: true,
     filterType: "boolean",
+    options: [...BooleanFilterValues],
     editable: true,
   },
   {

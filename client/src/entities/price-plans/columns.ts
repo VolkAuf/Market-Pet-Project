@@ -1,5 +1,5 @@
+import { BooleanFilterValues, type Column } from "@/features/table/types";
 import type { PricePlans } from "@/entities/price-plans/types";
-import type { Column } from "@/features/table/types";
 
 export const pricePlansColumns: Column<PricePlans>[] = [
   {
@@ -27,6 +27,7 @@ export const pricePlansColumns: Column<PricePlans>[] = [
     sortable: true,
     filterable: true,
     filterType: "boolean",
+    options: [...BooleanFilterValues],
     editable: true,
   },
   {

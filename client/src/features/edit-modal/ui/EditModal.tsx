@@ -1,10 +1,10 @@
 "use client";
 
-import { type JSX, memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { EditorInputMemo } from "@/features/edit-modal/ui/editorInput/EditorInput";
 import { ModalPortalMemo } from "@/shared/ui/components/modalPortal";
 import { getNestedValue, setNestedImmutable } from "@/shared/utils/nestedValueHandlers";
-import type { Column, WithId } from "@/features/table/types";
+import type { Column } from "@/features/table/types";
 import type { BaseTypes } from "@/shared/utils/types";
 
 export type EditModalProps<T extends Record<string, unknown>> = {
@@ -87,4 +87,4 @@ export function EditModal<T extends Record<string, unknown>>({
   );
 }
 
-export const MemoEditModal = memo(EditModal) as <T extends WithId>(p: EditModalProps<T>) => JSX.Element;
+export const MemoEditModal = memo(EditModal) as typeof EditModal;

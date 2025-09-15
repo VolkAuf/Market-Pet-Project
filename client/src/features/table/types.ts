@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 export type ColumnType = "text" | "boolean" | "date" | "select" | "number";
 export type FilterValue = string | boolean | "any" | Range;
+export const BooleanFilterValues = ["True", "False"];
 
 export type FilterParams = Record<string, FilterValue>;
 
