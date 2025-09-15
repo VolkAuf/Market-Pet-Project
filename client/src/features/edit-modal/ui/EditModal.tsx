@@ -1,11 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { type JSX, memo, useCallback, useEffect, useState } from "react";
 import { EditorInputMemo } from "@/features/edit-modal/ui/editorInput/EditorInput";
 import { ModalPortalMemo } from "@/shared/ui/components/modalPortal";
-import { deepClone } from "@/shared/utils/deepClone";
 import { getNestedValue, setNestedImmutable } from "@/shared/utils/nestedValueHandlers";
-import type { Column } from "@/features/table/types";
+import type { Column, WithId } from "@/features/table/types";
 import type { BaseTypes } from "@/shared/utils/types";
 
 export type EditModalProps<T extends Record<string, unknown>> = {
@@ -23,10 +22,10 @@ export function EditModal<T extends Record<string, unknown>>({
   row,
   onSave,
 }: EditModalProps<T>) {
-  const [form, setForm] = useState<T | null>(row ? deepClone(row) : null);
+  const [form, setForm] = useState<T | null>(row ? structuredClone(row) : null);
 
   useEffect(() => {
-    setForm(row ? deepClone(row) : null);
+    setForm(row ? structuredClone(row) : null);
   }, [row]);
 
   const onChangeField = useCallback((key: string, value: BaseTypes) => {
@@ -87,3 +86,5 @@ export function EditModal<T extends Record<string, unknown>>({
     </ModalPortalMemo>
   );
 }
+
+export const MemoEditModal = memo(EditModal) as <T extends WithId>(p: EditModalProps<T>) => JSX.Element;

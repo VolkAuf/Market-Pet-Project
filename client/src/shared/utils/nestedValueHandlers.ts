@@ -14,7 +14,10 @@ export function isRecord(x: unknown): x is Record<string, unknown> {
 
 export function setNestedImmutable<T extends Record<string, unknown>>(obj: T, path: string, value: unknown): T {
   const parts = path.split(".");
-  const last = parts.pop()!;
+  const last = parts.pop();
+  if (!last) {
+    return obj;
+  }
   const root = { ...(obj ?? {}) };
   let cur: Record<string, unknown> = root;
   for (const p of parts) {

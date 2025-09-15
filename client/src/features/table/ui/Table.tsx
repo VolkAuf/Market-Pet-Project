@@ -8,7 +8,7 @@ import { HeaderCell, type HeaderCellProps } from "@/features/table/ui/header-cel
 import { Row, type RowProps } from "@/features/table/ui/row/Row";
 import type { Column, FilterParams, FilterValue, WithId } from "@/features/table/types";
 
-type TableProps<T extends WithId> = {
+export type TableProps<T extends WithId> = {
   data: T[];
   columns: Column<T>[];
   onEdit: (row: T) => void;
@@ -97,3 +97,5 @@ export function Table<T extends WithId>({ data, columns, onEdit }: TableProps<T>
     </div>
   );
 }
+
+export const MemoTable = memo(Table) as <T extends WithId>(p: TableProps<T>) => JSX.Element;
